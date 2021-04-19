@@ -57,26 +57,25 @@ function cartNumbers(product){
     }
     setItems(product);
 }
-
-let cartItems = localStorage.getItem('productInCart');
+function setItems(product){
+    let cartItems = localStorage.getItem('productInCart');
     cartItems = JSON.parse(cartItems);
 
     if(cartItems != null){
+
         if(cartItems[product.tag] == undefined){
             cartItems = {
                 ...cartItems,
                 [product.tag]: product
             }
-
         }
         cartItems[product.tag].inCart += 1;
     } else {
         cartItems = {
-            [product.tag]: product
+            [product.tag]:product
         }
-        cartItems[product.tag].inCart = 1;
+        cartItems.inCart = 1;
     }
-
     localStorage.setItem('productInCart', JSON.stringify(cartItems));
 }
 
